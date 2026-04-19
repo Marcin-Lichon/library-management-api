@@ -5,6 +5,9 @@ import marcin.projects.librarysystem.dto.BookResponseDto;
 import marcin.projects.librarysystem.model.Book;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+import java.util.List;
+
 @Component
 public class BookMapper {
 
@@ -33,6 +36,15 @@ public class BookMapper {
                 book.getReleaseYear(),
                 book.getIsbn()
         );
+    }
+
+    public List<BookResponseDto> toDtoList(List<Book> books){
+        if(books.isEmpty()){
+            return Collections.emptyList();
+        }
+        return books.stream()
+                .map(this::toDto)
+                .toList();
     }
 
 
