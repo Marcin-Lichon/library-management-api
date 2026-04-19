@@ -42,3 +42,14 @@ Content-Type: application/json
   "releaseYear": 2020,
   "isbn": "9780062200570"
 }
+
+### Test walidacji w dto
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author": "Adam Mickiewicz",
+  "releaseYear": 1834,
+  "isbn": "9780781800334"
+}
