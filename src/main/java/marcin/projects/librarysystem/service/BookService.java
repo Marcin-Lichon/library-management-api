@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import marcin.projects.librarysystem.dto.BookRequestDto;
 import marcin.projects.librarysystem.dto.BookResponseDto;
 import marcin.projects.librarysystem.mapper.BookMapper;
+import marcin.projects.librarysystem.model.Book;
 import marcin.projects.librarysystem.repository.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,8 +24,15 @@ public class BookService {
         return bookMapper.toDto(savedBook);
     }
 
-    public List<BookResponseDto> getAllBooks(){
-        var books = bookRepository.findAll();
+    public List<BookResponseDto> getAllBooks(String author){
+        List<Book> books;
+
+        if(author != null && !author.isBlank()){
+            books = bookRepository.findBookByAuthor(author);
+        } else {
+            books = bookRepository.findAll();
+        }
+
         return bookMapper.toDtoList(books);
     }
 
