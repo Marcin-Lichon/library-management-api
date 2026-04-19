@@ -1,0 +1,55 @@
+### Dodawanie nowej książki
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "Wiedźmin: Ostatnie Życzenie",
+  "author": "Andrzej Sapkowski",
+  "releaseYear": 1993,
+  "isbn": "9788375906254"
+}
+
+### Dodawanie drugiej książki
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "NOS4A2",
+  "author": "Joe Hill",
+  "releaseYear": 2013,
+  "isbn": "9780062200570"
+}
+
+### Wyświetlanie wszystkich książek
+GET http://localhost:8080/api/books
+
+### Wyświetlanie książki po id
+GET http://localhost:8080/api/books/2
+
+### Usunięcie książki po istniejącym id
+DELETE http://localhost:8080/api/books/2
+
+### Próba usunięcia nieistniejącej książki
+DELETE http://localhost:8080/api/books/67
+
+### Aktualizacja książki po ID
+PUT http://localhost:8080/api/books/2
+Content-Type: application/json
+
+{
+  "title": "NOS4A2",
+  "author": "Joe Hill",
+  "releaseYear": 2020,
+  "isbn": "9780062200570"
+}
+
+### Test walidacji w dto
+POST http://localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author": "Adam Mickiewicz",
+  "releaseYear": 1834,
+  "isbn": "9780781800334"
+}
