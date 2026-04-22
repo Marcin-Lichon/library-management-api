@@ -1,10 +1,8 @@
 package marcin.projects.librarysystem.dto;
 
-
-public record BookResponseDto(
-        Long id,
+public record AuthorBookDto(
+        long id,
         String title,
-        AuthorResponseDto author,
         int releaseYear,
         String isbn
-        ){}
+) {}

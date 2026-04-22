@@ -26,8 +26,8 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BookResponseDto>> getAll(@RequestParam(required = false) String author){
-        var bookList = bookService.getAllBooks(author);
+    public ResponseEntity<List<BookResponseDto>> getAll(@RequestParam(required = false) Long authorId){
+        var bookList = bookService.getAllBooks(authorId);
         return ResponseEntity.ok(bookList);
     }
 
