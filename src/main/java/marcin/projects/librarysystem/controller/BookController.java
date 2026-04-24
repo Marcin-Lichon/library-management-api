@@ -1,6 +1,5 @@
 package marcin.projects.librarysystem.controller;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import marcin.projects.librarysystem.dto.BookRequestDto;
 import marcin.projects.librarysystem.dto.BookResponseDto;
@@ -11,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,16 +24,13 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<BookResponseDto>> getAll(@RequestParam(required = false) Long authorId){
-        var bookList = bookService.getAllBooks(authorId);
+    public ResponseEntity<List<BookResponseDto>> getAllOrById(
+            @RequestParam(required = false) Long authorId){
+
+        var bookList = bookService.getBooks(authorId);
         return ResponseEntity.ok(bookList);
     }
 
-    @GetMapping({"{id}"})
-    public ResponseEntity<BookResponseDto> getById(@PathVariable Long id){
-        Optional<BookResponseDto> bookById = bookService.getBookById(id);
-        return ResponseEntity.of(bookById);
-    }
 
     @DeleteMapping({"{id}"})
     public ResponseEntity<Void> deleteById(@PathVariable Long id){

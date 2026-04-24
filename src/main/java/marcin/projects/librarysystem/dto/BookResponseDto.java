@@ -4,7 +4,7 @@ package marcin.projects.librarysystem.dto;
 public record BookResponseDto(
         Long id,
         String title,
-        AuthorResponseDto author,
+        AuthorResponseShortDto author,
         int releaseYear,
         String isbn
         ){}

@@ -31,7 +31,7 @@ public class BookService {
         return bookMapper.toDto(savedBook);
     }
 
-    public List<BookResponseDto> getAllBooks(Long authorId){
+    public List<BookResponseDto> getBooks(Long authorId){
         List<Book> books;
 
         if(authorId != null){
@@ -43,12 +43,7 @@ public class BookService {
         return bookMapper.toDtoList(books);
     }
 
-    public Optional<BookResponseDto> getBookById(Long id){
-        return bookRepository.findById(id)
-                .map(bookMapper::toDto);
-
-    }
-
+    @Transactional
     public boolean deleteBookById(Long id){
         if(bookRepository.existsById(id)){
             bookRepository.deleteById(id);

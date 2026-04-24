@@ -1,5 +1,6 @@
 package marcin.projects.librarysystem.mapper;
 
+import marcin.projects.librarysystem.dto.AuthorBookDto;
 import marcin.projects.librarysystem.dto.BookRequestDto;
 import marcin.projects.librarysystem.dto.BookResponseDto;
 import marcin.projects.librarysystem.model.Author;
@@ -33,7 +34,7 @@ public class BookMapper {
         return new BookResponseDto(
                 book.getId(),
                 book.getTitle(),
-                new AuthorMapper().toDto(book.getAuthor()),
+                new AuthorMapper().toShortDto(book.getAuthor()),
                 book.getReleaseYear(),
                 book.getIsbn()
         );
@@ -46,6 +47,18 @@ public class BookMapper {
         return books.stream()
                 .map(this::toDto)
                 .toList();
+    }
+    public AuthorBookDto toShortDto(Book book){
+        if(book==null){
+            return null;
+        }
+
+        return new AuthorBookDto(
+                book.getId(),
+                book.getTitle(),
+                book.getReleaseYear(),
+                book.getIsbn()
+        );
     }
 
 
