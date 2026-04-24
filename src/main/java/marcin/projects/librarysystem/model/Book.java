@@ -3,6 +3,7 @@ package marcin.projects.librarysystem.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import marcin.projects.librarysystem.model.enums.BookStatus;
 
 @Entity
 @Getter
@@ -23,4 +24,8 @@ public class Book {
 
     private int releaseYear;
     private String isbn;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private BookStatus status = BookStatus.AVAILABLE;
 }

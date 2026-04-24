@@ -36,7 +36,8 @@ public class BookMapper {
                 book.getTitle(),
                 new AuthorMapper().toShortDto(book.getAuthor()),
                 book.getReleaseYear(),
-                book.getIsbn()
+                book.getIsbn(),
+                book.getStatus()
         );
     }
 
@@ -48,18 +49,4 @@ public class BookMapper {
                 .map(this::toDto)
                 .toList();
     }
-    public AuthorBookDto toShortDto(Book book){
-        if(book==null){
-            return null;
-        }
-
-        return new AuthorBookDto(
-                book.getId(),
-                book.getTitle(),
-                book.getReleaseYear(),
-                book.getIsbn()
-        );
-    }
-
-
 }

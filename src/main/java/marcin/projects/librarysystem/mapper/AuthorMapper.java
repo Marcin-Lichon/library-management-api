@@ -36,7 +36,8 @@ public class AuthorMapper {
                         book.getId(),
                         book.getTitle(),
                         book.getReleaseYear(),
-                        book.getIsbn()
+                        book.getIsbn(),
+                        book.getStatus()
                 ))
                 .toList();
 
