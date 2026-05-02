@@ -1,7 +1,9 @@
 package marcin.projects.librarysystem.mapper;
 
+import marcin.projects.librarysystem.dto.AuthorBookDto;
 import marcin.projects.librarysystem.dto.BookRequestDto;
 import marcin.projects.librarysystem.dto.BookResponseDto;
+import marcin.projects.librarysystem.model.Author;
 import marcin.projects.librarysystem.model.Book;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +13,14 @@ import java.util.List;
 @Component
 public class BookMapper {
 
-    public Book toEntity(BookRequestDto dto){
+    public Book toEntity(BookRequestDto dto, Author author){
         if (dto == null){
             return null;
         }
 
         Book book = new Book();
         book.setTitle(dto.title());
-        book.setAuthor(dto.author());
+        book.setAuthor(author);
         book.setReleaseYear(dto.releaseYear());
         book.setIsbn(dto.isbn());
 
@@ -32,9 +34,10 @@ public class BookMapper {
         return new BookResponseDto(
                 book.getId(),
                 book.getTitle(),
-                book.getAuthor(),
+                new AuthorMapper().toShortDto(book.getAuthor()),
                 book.getReleaseYear(),
-                book.getIsbn()
+                book.getIsbn(),
+                book.getStatus()
         );
     }
 
@@ -46,6 +49,4 @@ public class BookMapper {
                 .map(this::toDto)
                 .toList();
     }
-
-
 }
